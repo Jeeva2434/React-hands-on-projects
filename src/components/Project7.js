@@ -2,18 +2,35 @@ import React, { useEffect, useState } from 'react'
 import { people } from '../data'
 
 const Project7 = () => {
-    const [people,setPeople] = useState(people);
+    const [peoples,setPeople] = useState(people);
     const [index,setIndex] = useState(0);
 
-    useEffect(()=>{},[index]);
+    useEffect(()=>{
+        if(index > peoples.length-1){
+            setIndex(0);
+        }
+        if(index < 0){
+            setIndex(peoples.length-1);
+        }
+        console.log('use eff')
+    },[index,peoples]);
+
+    useEffect(()=>{
+        let slider = setInterval(()=>{
+            setIndex(index+1);
+        },5000);
+        return () => {
+            clearInterval(slider);
+        }
+    },[index]); 
 
     return (
-        <div>
-          {people && people.map((person,personIndex)=>{
+        <div className='section-center'>
+          {peoples && peoples.map((person,personIndex)=>{
             const {id,name,title,image,quote} = person;
             let position = 'nextSlide';
             if(index === personIndex){
-                position = 'absolute';
+                position = 'activeSlide';
             }
             if(personIndex === index-1 || (index===0 && personIndex===person.length-1)){
                 position = 'lastSlide';
@@ -27,8 +44,13 @@ const Project7 = () => {
                 </article>
             )
           })}
-          <button onClick={()=>setIndex(index-1)}>Previous</button>
-          <button onClick={()=>setIndex(index+1)}>Next</button>
+          <div style={{position:'relative',zIndex:'9999'}}>
+            <button type='button' onClick={()=>{
+                console.log('Previous button clicked');
+                setIndex(index => index-1);
+            }}>Previous</button>
+            <button type='button' onClick={()=>setIndex(index => index+1)}>Next</button>
+          </div>
         </div>
     )
 }
