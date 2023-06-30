@@ -4,7 +4,8 @@ import './App.css';
 // import Project3 from './components/Project3';
 // import Project4 from './components/Project4';
 // import Project5 from './components/Project5';
-import Project6 from './components/Project6';
+// import Project6 from './components/Project6';
+import Project7 from './components/Project7';
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
        {/* <Project3/> */}
        {/* <Project4/> */}
        {/* <Project5/> */}
-       <Project6/>
+       {/* <Project6/> */}
+       <Project7/>
     </div>
   );
 }
