@@ -16,4 +16,8 @@
       .infoContainer.expanded {
         max-height: none;
       }
+    
+    .activeBtn{
+      border: 10px solid green;
+    }
       
